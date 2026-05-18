@@ -1,0 +1,37 @@
+# Data directories (too large for git)
+ztf_data/
+ztf_data_aligned/
+ztf_data_ref/
+ztf_data_stack/
+.temp_refimg_*/
+
+# CSV index (too large, regenerate with notebook 00)
+fichiers_par_field.csv
+files_by_field.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Environment
+.env
+.venv
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp

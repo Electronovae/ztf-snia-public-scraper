@@ -1,0 +1,9 @@
+astropy>=5.0
+numpy>=1.24
+matplotlib>=3.7
+scipy>=1.10
+reproject>=0.13
+photutils>=1.9
+tqdm>=4.65
+pandas>=2.0
+requests>=2.31
