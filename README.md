@@ -1,4 +1,4 @@
-# 🔭 ZTF-Tools
+# 🔭 ztf-snia-public-scraper
 
 **Open-source Python framework for large-scale ZTF public data processing and Type Ia supernova detection**
 
@@ -20,7 +20,7 @@ The project was developed as part of a Master's thesis in Fundamental Physics & 
 
 | Metric | Value |
 |--------|-------|
-| Public ZTF archive indexed | **~544,000 HTML files (~50 GB)** |
+| Public ZTF archive indexed | **~544,000 HTML files (~800 GB)** |
 | Processing speed-up (parallelization) | **×3–4 via ThreadPoolExecutor** |
 | Theoretical SNe Ia detection gain (stacking ×3) | **+×2.8 under ideal conditions** |
 | Light curve validated against | **ZTF-COSMO-DR2 catalog** |
