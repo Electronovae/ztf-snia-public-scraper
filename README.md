@@ -94,9 +94,7 @@ ZTF Public Archive (IRSA)
 
 The pipeline was validated on a confirmed Type Ia supernova from the ZTF-COSMO-DR2 catalog.
 
-![Light curve of ZTF17aadlxmv](docs/light_curve_ztf17aadlxmv.png)
-
-*A COMPLETER : exporter cette figure depuis le notebook 02_ZTF17aadlxmv.ipynb et la placer dans docs/.*
+![Light curve of ZTF17aadlxmv](light_curve_ztf17aadlxmv.png)
 
 The reconstructed light curve (ZTF-r filter) correctly reproduces:
 
@@ -104,9 +102,7 @@ The reconstructed light curve (ZTF-r filter) correctly reproduces:
 - **Secondary shoulder** ~ mid-February 2020 (characteristic of SNe Ia in red bands)
 - Smooth decline into plateau phase
 
-![Difference image showing detected transient](docs/difference_image_transient.png)
-
-*A COMPLETER : exporter une image de soustraction montrant le transitoire détecté, la placer dans docs/.*
+![Difference image showing detected transient](difference_image_transient.png)
 
 The temporal structure aligns well with the official ZTF catalog flux measurements, confirming the pipeline's photometric reliability.
 
