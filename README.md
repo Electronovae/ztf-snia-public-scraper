@@ -29,9 +29,7 @@ The project was developed as part of a Master's thesis in Fundamental Physics & 
 
 | Metric | Value |
 |---|---|
-| Theoretical SNe Ia detection gain (stacking ×3) | +×2.8 under ideal conditions |
-
-> Le tableau "Measured" ne doit contenir que des chiffres que tu peux justifier en une phrase si on te les redemande en entretien. Le tableau "Estimated" existe pour que personne ne confonde les deux.
+| Theoretical SNe Ia detection gain (stacking ×1.5) | +20% under ideal conditions |
 
 ---
 
