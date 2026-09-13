@@ -21,8 +21,8 @@ The project was developed as part of a Master's thesis in Fundamental Physics & 
 
 | Metric | Value |
 |---|---|
-| Public ZTF archive indexed | [A COMPLETER — cf. bloc 1.4, chiffre unique tranché] |
-| Processing speed-up (parallelization) | ×3–4 via ThreadPoolExecutor |
+| Public ZTF archive indexed | 544.000 HTML files |
+| Processing speed-up (parallelization) | ×4 via ThreadPoolExecutor |
 | Light curve validated against | ZTF-COSMO-DR2 catalog, on confirmed SN ZTF17aadlxmv |
 
 **Estimated analytically** (not measured on real detections)
