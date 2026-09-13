@@ -1,12 +1,11 @@
-# 🔭 ztf-snia-public-scraper
+# 🔭 ZTF-Tools
 
 **Open-source Python framework for large-scale ZTF public data processing and Type Ia supernova detection**
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)](https://python.org)
 [![Astropy](https://img.shields.io/badge/Astropy-compatible-orange?logo=python)](https://www.astropy.org)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Open Science](https://img.shields.io/badge/Open%20Science-%E2%9C%93-brightgreen)]()
-[![Status](https://img.shields.io/badge/Status-Active%20Development-yellow)]()
+[![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/Electronovae/ztf-snia-public-scraper/blob/main/LICENSE)
+<!-- Badge CI a ajouter ici une fois le workflow en place (bloc 1.3) -->
 
 ---
 
@@ -16,14 +15,23 @@ ZTF-Tools is a modular, reproducible Python pipeline built to **download, proces
 
 The project was developed as part of a Master's thesis in Fundamental Physics & Astrophysics at [EUPI — Université Clermont Auvergne](https://eupi.uca.fr), and is released as open-source to support community-driven transient discovery.
 
-### Key results
+### Results
+
+**Measured**
 
 | Metric | Value |
-|--------|-------|
-| Public ZTF archive indexed | **~544,000 HTML files (~800 GB)** |
-| Processing speed-up (parallelization) | **×3–4 via ThreadPoolExecutor** |
-| Theoretical SNe Ia detection gain (stacking ×3) | **+×2.8 under ideal conditions** |
-| Light curve validated against | **ZTF-COSMO-DR2 catalog** |
+|---|---|
+| Public ZTF archive indexed | [A COMPLETER — cf. bloc 1.4, chiffre unique tranché] |
+| Processing speed-up (parallelization) | ×3–4 via ThreadPoolExecutor |
+| Light curve validated against | ZTF-COSMO-DR2 catalog, on confirmed SN ZTF17aadlxmv |
+
+**Estimated analytically** (not measured on real detections)
+
+| Metric | Value |
+|---|---|
+| Theoretical SNe Ia detection gain (stacking ×3) | +×2.8 under ideal conditions |
+
+> Le tableau "Measured" ne doit contenir que des chiffres que tu peux justifier en une phrase si on te les redemande en entretien. Le tableau "Estimated" existe pour que personne ne confonde les deux.
 
 ---
 
@@ -34,7 +42,7 @@ ZTF Public Archive (IRSA)
          │
          ▼
 ┌─────────────────────┐
-│  1. Archive Indexer  │  ← Parse 544k HTML files → local CSV index
+│  1. Archive Indexer  │  ← Parse archive index files → local CSV index
 │   (CSVDownloader)    │    Download from hours to < 1 hour
 └────────┬────────────┘
          │
@@ -88,10 +96,19 @@ ZTF Public Archive (IRSA)
 
 The pipeline was validated on a confirmed Type Ia supernova from the ZTF-COSMO-DR2 catalog.
 
+![Light curve of ZTF17aadlxmv](docs/light_curve_ztf17aadlxmv.png)
+
+*A COMPLETER : exporter cette figure depuis le notebook 02_ZTF17aadlxmv.ipynb et la placer dans docs/.*
+
 The reconstructed light curve (ZTF-r filter) correctly reproduces:
+
 - **Primary maximum** ~ January 30, 2020
 - **Secondary shoulder** ~ mid-February 2020 (characteristic of SNe Ia in red bands)
 - Smooth decline into plateau phase
+
+![Difference image showing detected transient](docs/difference_image_transient.png)
+
+*A COMPLETER : exporter une image de soustraction montrant le transitoire détecté, la placer dans docs/.*
 
 The temporal structure aligns well with the official ZTF catalog flux measurements, confirming the pipeline's photometric reliability.
 
@@ -102,17 +119,17 @@ The temporal structure aligns well with the official ZTF catalog flux measuremen
 ### Installation
 
 ```bash
-git clone https://github.com/Electronovae/ZTF-Tools.git
-cd ZTF-Tools
+git clone https://github.com/Electronovae/ztf-snia-public-scraper.git
+cd ztf-snia-public-scraper
 pip install -r requirements.txt
 ```
 
 ### 1. Generate the archive index (run once)
 
-```python
+```
 # See notebooks/00_build_index.ipynb
-# Downloads and parses IRSA HTML index files → fichiers_par_field.csv
-# Warning: requires ~50 GB disk space and several hours on first run
+# Downloads and parses IRSA index files → fichiers_par_field.csv
+# Warning: requires significant disk space and several hours on first run
 ```
 
 ### 2. Download images for a target field
@@ -160,12 +177,14 @@ results = tool.subtraction(stack_files, ref, ra=246.52, dec=26.84,
                            End_Year=2020, End_Month=5, End_Day=1)
 ```
 
+Un script equivalent, teste de bout en bout, doit exister dans `examples/quick_start.py` (bloc 1.1). S'il n'existe pas encore, retire cette phrase.
+
 ---
 
 ## 📁 Repository Structure
 
 ```
-ZTF-Tools/
+ztf-snia-public-scraper/
 ├── astrotools/
 │   ├── __init__.py
 │   ├── pipeline.py          # AstroTools class — full processing pipeline
@@ -174,15 +193,23 @@ ZTF-Tools/
 ├── notebooks/
 │   ├── 00_build_index.ipynb       # Archive indexing (run once)
 │   ├── 01_starter_pack.ipynb      # Full pipeline walkthrough
-│   └── 02_ZTF17aadlxmv.ipynb     # Case study: confirmed SNe Ia
+│   └── 02_ZTF17aadlxmv.ipynb      # Case study: confirmed SNe Ia
 ├── examples/
 │   └── quick_start.py
+├── tests/
+│   └── ...                        # cf. bloc 1.3
 ├── docs/
-│   └── pipeline_diagram.png
+│   ├── light_curve_ztf17aadlxmv.png
+│   ├── difference_image_transient.png
+│   ├── DEVENDER--DAUGE-Florian-Presentation-M2.pdf
+│   └── M2-TER-REPORT-DEVENDER--DAUGE-FLORIAN-1.pdf
+├── pyproject.toml
 ├── requirements.txt
 ├── LICENSE
 └── README.md
 ```
+
+*Cette arborescence doit rester le reflet exact du dépôt reel. Si un dossier annonce ci-dessus n'existe pas encore, retire-le de la liste plutot que de laisser une promesse non tenue.*
 
 ---
 
@@ -201,11 +228,12 @@ requests>=2.31
 ```
 
 Install all dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-> ⚠️ **Disk space**: processing a full ZTF quadrant over 3 years requires up to **30 GB** per quadrant. Peak usage during development reached **~600 GB** of raw data.
+> ⚠️ **Disk space**: processing a full ZTF quadrant over several years can require tens of GB per quadrant depending on the time window selected.
 
 ---
 
@@ -246,6 +274,8 @@ sigma_pix = fwhm_diff / (2.3548 * pixel_scale)
 image_degraded = gaussian_filter(image, sigma=sigma_pix)
 ```
 
+> Cas limite corrige au bloc 1.3 : si `seeing_to < seeing_from`, l'expression sous la racine est negative et produit un NaN silencieux. La fonction doit lever une exception explicite dans ce cas.
+
 ### Automatic transient detection
 
 Transients in difference images are identified using `DAOStarFinder` with sigma-clipped statistics, then spatially clustered across epochs to reject artifacts:
@@ -258,7 +288,7 @@ sources = daofind(diff_img - median)
 
 ---
 
-## 📊 Detection Rate Estimation
+## 📊 Detection Rate Estimation (analytical, not measured)
 
 Under ideal conditions, stacking N=3 images improves the limiting magnitude by:
 
@@ -270,6 +300,8 @@ $$N_{\text{stacked}} = N_{\text{initial}} \times N^{0.75} \approx 2.82 \times N_
 
 Applied to ZTF field 0664 (357 nights, 11.75 deg²): expected gain from <1 to ~1.5 SNe Ia per field.
 
+This is a theoretical estimate under idealized conditions, not a measured detection count on real data.
+
 ---
 
 ## 🔓 Open Science Philosophy
@@ -277,6 +309,7 @@ Applied to ZTF field 0664 (357 nights, 11.75 deg²): expected gain from <1 to ~1
 This framework is built entirely on **publicly available ZTF data** (hosted on [IRSA](https://irsa.ipac.caltech.edu/)) and released under MIT license.
 
 Goals:
+
 - Democratize access to time-domain astrophysics
 - Enable community-driven transient searches in archival data
 - Provide a reproducible, extensible foundation for future surveys (LSST/Rubin Observatory)
@@ -293,8 +326,8 @@ This work is motivated by the **Hubble tension** — a >5σ discrepancy between 
 
 ## 👤 Author
 
-**Florian Devender-Dauge**  
-Master Physique Fondamentale & Applications — EUPI, Université Clermont Auvergne  
+**Florian Devender-Dauge**
+Master Physique Fondamentale & Applications — EUPI, Université Clermont Auvergne
 Supervised by Philippe Rosnet & Marie Aubert (LPC Clermont)
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Florian%20Devender--Dauge-blue?logo=linkedin)](https://www.linkedin.com/in/florian-devender-dauge-bab4261a9/)
@@ -313,4 +346,4 @@ Supervised by Philippe Rosnet & Marie Aubert (LPC Clermont)
 
 ## 📄 License
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT License — see [LICENSE](https://github.com/Electronovae/ztf-snia-public-scraper/blob/main/LICENSE) for details.
